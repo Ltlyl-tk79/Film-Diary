@@ -1,0 +1,30 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <h2>映画新規投稿</h2>
+        <%= form_with model:@movie, local:true do |f| %>
+
+          <div class="form_group">
+            <%= f.label :Image %>
+            <%= f.attachment_field :image, class: "form-control-file product_image" %>
+          </div>
+
+          <div class="form_group">
+            <%= f.label :Title %>
+            <%= f.text_field :title, class: "form-control book_title" %>
+          </div>
+
+          <div class="form_group">
+            <%= f.label :Impressions %>
+            <%= f.text_area :body, class: "form-control book_body" %>
+          </div>
+
+          <div class="form_group">
+            <%= f.submit class: "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>

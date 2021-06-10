@@ -1,3 +1,5 @@
 class Movie < ApplicationRecord
-  attachment :image, destroy: false
+  attachment :movie_image, destroy: false
+
+  belongs_to :user
 end

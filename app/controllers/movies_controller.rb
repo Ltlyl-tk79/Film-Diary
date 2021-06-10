@@ -5,18 +5,22 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.new(movie_prams)
+    @movie = Movie.new(movie_params)
     if @movie.save
-      redirect_to movie_path(@movie.id)
+      redirect_to movies_path
     else
       render "new"
     end
   end
 
   def index
+    @movies = Movie.all
+    @quantity = Movie.count
   end
 
   def show
+    @movie = Movie.find(params[:id])
+    @user = @movie.user
   end
 
   def edit

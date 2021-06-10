@@ -1,0 +1,17 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="image_field col-md-7">
+        <%= attachment_image_tag(@movie, :movie_image, :fill, 250, 170, fallback: "no_image.jpg") %>
+      </div>
+      <div class="introduction_field col-md-4">
+        <h2><%= @movie.title %></h2>
+        <p><%= @movie.body %></p>
+        <% if @user == current_user.id %>
+          <p><%= link_to "編集", edit_movie_path(@movie), class:"btn btn-success" %></p>
+          <p><%= link_to "Destroy", movie_path(@movie), method: :delete, data: {confirm: '本当に消去しますか？'}, class: "btn btn-danger" %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>

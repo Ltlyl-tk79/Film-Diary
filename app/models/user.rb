@@ -6,4 +6,7 @@ class User < ApplicationRecord
 
   has_many :movies, dependent: :destroy
   has_many :movie_comments, dependent: :destroy
+
+  attachment :profile_image, destroy: false
+
 end

@@ -7,11 +7,28 @@
       <div class="introduction_field col-md-4">
         <h2><%= @movie.title %></h2>
         <p><%= @movie.body %></p>
-        <% if @user == current_user.id %>
-          <p><%= link_to "編集", edit_movie_path(@movie), class:"btn btn-success" %></p>
+        <% if @user.id == current_user.id %>
+          <p><%= link_to "Edit", edit_movie_path(@movie), class:"btn btn-success" %></p>
           <p><%= link_to "Destroy", movie_path(@movie), method: :delete, data: {confirm: '本当に消去しますか？'}, class: "btn btn-danger" %></p>
         <% end %>
       </div>
+    </div>
+    <div class="comment">
+      <p>コメント件数<%= @movie.movie_comments.count %></p>
+      <% @movie.movie_comments.each do |movie_comment| %>
+       <%= movie_comment.user.name %>
+       <%= movie_comment.created_at.strftime('%Y/%m/%d') %>
+       <%= movie_comment.comment %>
+       <% if @user.id == current_user.id %>
+         <p><%= link_to "Destroy", movie_movie_comment_path(@movie), method: :delete, data: {confirm: '本当に消去しますか？'}, class: "btn btn-danger" %></p>
+       <% end %>
+      <% end %>
+    </div>
+    <div class="new-comment">
+    <%= form_with(model:[@movie, @movie_comment], local: true) do |f| %>
+      <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+      <%= f.submit "コメントを投稿" %>
+    <% end %>
     </div>
   </div>
 </main>

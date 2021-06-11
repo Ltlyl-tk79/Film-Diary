@@ -1,17 +1,19 @@
-<div class="container">
-  <h2>映画投稿一覧<span>(<%= @quantity %>件)</span></h2>
-  <div class="row">
-    <div class="movie_container">
-      <% @movies.each do |movie| %>
-        <div class="movie_item">
-        <!--日付の記載-->
-          <%= link_to movie_path(movie.id) do %>
-            <%= attachment_image_tag(movie, :movie_image, :fill, 200, 200, follback: "no_image.jpg") %>
-          <% end %>
-          <p><%= movie.title %></p>
-        <!--投稿者の名前-->
-        </div>
-      <% end %>
+<main>
+  <div class="container">
+    <h2>映画投稿一覧<span>(<%= @quantity %>件)</span></h2>
+    <div class="row">
+      <div class="movie_container">
+        <% @movies.each do |movie| %>
+          <div class="movie_item">
+          <!--日付の記載-->
+            <%= link_to movie_path(movie.id) do %>
+              <%= attachment_image_tag(movie, :movie_image, :fill, 200, 200, follback: "no_image.jpg") %>
+            <% end %>
+            <p>タイトル：<%= movie.title %></p>
+            <p>ユーザーネーム：<%#= movie.user.name %></p>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+</main>

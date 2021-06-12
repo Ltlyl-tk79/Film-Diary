@@ -10,7 +10,9 @@
               <%= attachment_image_tag(movie, :movie_image, :fill, 200, 200, follback: "no_image.jpg") %>
             <% end %>
             <p>タイトル：<%= movie.title %></p>
-            <p>ユーザーネーム：<%#= movie.user.name %></p>
+            <p>ユーザーネーム：<%= movie.user.name %></p>
+            <p>コメント数：<%= movie.movie_comments.count %></p>
+            <p><%= movie.favorites.count %>イイね</p>
           </div>
         <% end %>
       </div>

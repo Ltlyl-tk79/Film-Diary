@@ -12,7 +12,8 @@ class MovieCommentsController < ApplicationController
 
   def destroy
     movie = Movie.find(params[:movie_id])
-    MovieComment.find_by(id: params[:id], movie_id: params[:movie_id]).destroy
+
+    MovieComment.find(params[:id]).destroy
     redirect_to movie_path(movie.id)
   end
 

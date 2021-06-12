@@ -14,12 +14,15 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <% @movie.each do |movie| %>
+        <% @movies.each do |movie| %>
           <div class="movie-item">
             <%= link_to movie_path(movie.id) do %>
               <%= attachment_image_tag(movie, :movie_image, :fill, 200, 200, fallback: "no_image.jpg") %>
             <% end %>
             <p>タイトル：<%= movie.title %></p>
+            <!--ユーザー名前を表示-->
+            <!--イイねの数-->
+            <!--コメントの数-->
           </div>
         <% end %>
       </div>

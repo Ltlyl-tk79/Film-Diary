@@ -3,7 +3,13 @@
     <div class="row">
       <div class="image-field col-md-7">
         <%= attachment_image_tag(@user, :profile_image, :fill, 250, 170, fallback: "no_image.jpg") %>
+
+        <div class="follow">
+          <p>フォロー：<%= @user.followings.count %></p>
+          <p>フォロワー：<%= @user.followers.count %></p>
+        </div>
       </div>
+
       <div class="introduction-field col-md-4">
         <h2><%= @user.name %></h2>
         <% if @user.id ==current_user.id %>

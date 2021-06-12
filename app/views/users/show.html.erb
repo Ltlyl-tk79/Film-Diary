@@ -5,8 +5,16 @@
         <%= attachment_image_tag(@user, :profile_image, :fill, 250, 170, fallback: "no_image.jpg") %>
 
         <div class="follow">
-          <p>フォロー：<%= @user.followings.count %></p>
-          <p>フォロワー：<%= @user.followers.count %></p>
+          <p>フォロー：
+            <%= link_to following_user_path(@user) do %>
+              <%= @user.followings.count %>
+            <% end %>
+          </p>
+          <p>フォロワー：
+          <%= link_to followers_user_path(@user) do %>
+            <%= @user.followers.count %>
+          <% end %>
+          </p>
         </div>
       </div>
 
@@ -26,7 +34,6 @@
               <%= attachment_image_tag(movie, :movie_image, :fill, 200, 200, fallback: "no_image.jpg") %>
             <% end %>
             <p>タイトル：<%= movie.title %></p>
-            <!--ユーザー名前を表示-->
             <!--イイねの数-->
             <!--コメントの数-->
           </div>

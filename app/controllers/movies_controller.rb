@@ -46,7 +46,7 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.require(:movie).permit(:title, :body, :movie_image)
+    params.require(:movie).permit(:title, :body, :movie_image, :evaluation)
   end
 
 end

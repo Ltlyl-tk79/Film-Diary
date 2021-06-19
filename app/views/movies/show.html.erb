@@ -18,21 +18,25 @@
         <% end %>
          <div class="movie-evaluation" data-score="<%= @movie.evaluation %>"></div>
       </div>
-      <script>
-        $('.movie-evaluation').raty({
-          readOnly: true,
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
-          score: function() {
-            return $(this).attr('data-score');
-          },
-        });
-      </script>
-      <div class="comment">
+    </div>
+    <script>
+      $('.movie-evaluation').raty({
+        readOnly: true,
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        score: function() {
+          return $(this).attr('data-score');
+        },
+      });
+    </script>
+    <div class="row">
+      <div class="col-md-7">
         <div class="comment-history">
           <%= render 'movie_comments/comment-index', movie: @movie, user: @user %>
         </div>
+      </div>
+      <div class="col-md-4">
         <div class="new-comment">
           <%= form_with(model:[@movie, @movie_comment]) do |f| %>
             <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %><br>

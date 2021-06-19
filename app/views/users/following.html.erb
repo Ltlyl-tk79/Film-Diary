@@ -1,26 +1,30 @@
 <main>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>image</th>
-        <th>name</th>
-        <th></th>
-        <th>Post Count</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg") %></td>
-          <td>
-            <%= link_to user_path(user.id) do %>
-              <%= user.name %>
-            <% end %>
-          </td>
-          <td></td>
-          <td><%= user.movies.count %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="container">
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>name</th>
+            <th></th>
+            <th>Post Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg") %></td>
+              <td>
+                <%= link_to user_path(user.id) do %>
+                  <%= user.name %>
+                <% end %>
+              </td>
+              <td></td>
+              <td><%= user.movies.count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </main>

@@ -5,6 +5,7 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.new(movie_id: @movie.id)
     favorite.save
     # redirect_to movie_path(movie)
+    # リダイレクト先は非同期通信を実装のためコメントアウト
   end
 
   def destroy
@@ -12,6 +13,7 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.find_by(movie_id: @movie.id)
     favorite.destroy
     # redirect_to movie_path(movie)
+    # リダイレクト先は非同期通信を実装のためコメントアウト
   end
 
 end

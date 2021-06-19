@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
         <h2>映画情報編集画面</h2>
-
+        <%= render 'layouts/errors', obj: @movie %>
         <%= form_with model:@movie, local:true do |f| %>
 
           <div class="form_group">
@@ -26,12 +26,11 @@
           </div>
 
           <div class="form_group">
-            <%= f.submit class: "btn btn-success" %>
+            <%= f.submit class: "btn btn-secondary" %>
           </div>
         <% end %>
-        <%= link_to "Back", movie_path(@movie) %>
+        <%#= link_to "Back", movie_path(@movie) %>
         <script>
-        // $(function(){
             // 実行する処理を記述
           $('#evaluate_stars').raty({
             starOn: "<%= asset_path('star-on.png') %>",
@@ -39,8 +38,6 @@
             starHalf: "<%= asset_path('star-half.png') %>",
             scoreName: 'movie[evaluation]' //登録するモデル名とカラム名を記述
           });
-        // });
-
         </script>
       </div>
     </div>

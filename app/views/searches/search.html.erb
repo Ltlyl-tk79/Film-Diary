@@ -4,6 +4,7 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= user.name %></td>
+          <td><%= link_to "show", user_path(user), class: "btn btn-outline-primary" %></td>
         </tr>
       <% end %>
     </tbody>
@@ -13,6 +14,7 @@
         <tr>
           <td><%= movie.title %></td>
           <td><%= movie.body %></td>
+          <td><%= link_to "show", movie_path(movie), class: "btn btn-outline-primary" %></td>
         </tr>
       <% end %>
     </tbody>

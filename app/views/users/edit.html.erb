@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
         <h2>会員情報編集画面</h2>
-
+        <%= render 'layouts/errors', obj: @user %>
         <%= form_with model:@user, local:true do |f| %>
 
           <div class="form_group">
@@ -17,10 +17,10 @@
           </div>
 
           <div class="form_group">
-            <%= f.submit class: "btn btn-success" %>
+            <%= f.submit class: "btn btn-secondary" %>
           </div>
         <% end %>
-        <%= link_to "Back", user_path(@user) %>
+        <%#= link_to "Back", user_path(@user) %>
       </div>
     </div>
   </div>

@@ -3,40 +3,43 @@
     <div class="row">
       <div class="image_field col-md-7">
         <%= attachment_image_tag(@movie, :movie_image, :fill, 250, 170, fallback: "no_image.jpg") %>
+        <div id="favorite-btn_<%= @movie.id %>">
+          <%= render 'favorites/favorite-btn', movie: @movie %>
+        </div>
       </div>
 
       <div class="introduction_field col-md-4">
         <h2><%= @movie.title %></h2>
         <p><%= @movie.body %></p>
         <% if @movie_user.id == current_user.id %>
-          <p><%= link_to "Edit", edit_movie_path(@movie), class:"btn btn-success" %></p>
-          <p><%= link_to "Destroy", movie_path(@movie), method: :delete, data: {confirm: '本当に消去しますか？'}, class: "btn btn-danger" %></p>
+          <p><%= link_to "Edit", edit_movie_path(@movie), class:"btn btn-outline-warning" %>
+              <%= link_to "Destroy", movie_path(@movie), method: :delete, data: {confirm: '本当に消去しますか？'}, class: "btn btn-outline-danger" %>
+          </p>
         <% end %>
          <div class="movie-evaluation" data-score="<%= @movie.evaluation %>"></div>
       </div>
-    </div>
-    <script>
-      $('.movie-evaluation').raty({
-        readOnly: true,
-        starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
-        score: function() {
-          return $(this).attr('data-score');
-        },
-      });
-    </script>
-    <div id="favorite-btn_<%= @movie.id %>">
-      <%= render 'favorites/favorite-btn', movie: @movie %>
-    </div>
-    <div class="comment">
-      <%= render 'movie_comments/comment-index', movie: @movie, user: @user %>
-    </div>
-    <div class="new-comment">
-      <%= form_with(model:[@movie, @movie_comment]) do |f| %>
-        <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-        <%= f.submit "コメントを投稿" %>
-      <% end %>
+      <script>
+        $('.movie-evaluation').raty({
+          readOnly: true,
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          score: function() {
+            return $(this).attr('data-score');
+          },
+        });
+      </script>
+      <div class="comment">
+        <div class="comment-history">
+          <%= render 'movie_comments/comment-index', movie: @movie, user: @user %>
+        </div>
+        <div class="new-comment">
+          <%= form_with(model:[@movie, @movie_comment]) do |f| %>
+            <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %><br>
+            <%= f.submit "コメントを投稿" %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </main>

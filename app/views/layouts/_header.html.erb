@@ -2,21 +2,21 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="/"><span>Film Diary</span></a>
-      <button class="navbar-togger" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-tagger-icon"></span>
-      </button>
+      <!--<button class="navbar-togger" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">-->
+        <!--<span class="navbar-tagger-icon"></span>-->
+      <!--</button>-->
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-            <li><%= link_to "Home", root_path %></li>
-            <li><%= link_to "Users", users_path %></li>
-            <li><%= link_to "Movies", movies_path %></li>
-            <li><%= link_to "My page", user_path(current_user) %></li>
-            <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to "Home", root_path, class: 'fas fa-home nav-link text-light' %></li>
+            <li><%= link_to "Users", users_path, class: 'fas fa-users nav-link text-light' %></li>
+            <li><%= link_to "Movies", movies_path, class: 'fas fa-film nav-link text-light' %></li>
+            <li><%= link_to "My page", user_path(current_user), class: 'fas fa-user nav-link text-light'%></li>
+            <li><%= link_to "logout", destroy_user_session_path, method: :delete, class: 'fas fa-sign-out-alt nav-link text-light' %></li>
           <% else %>
-            <li><%= link_to "Home", root_path %></li>
-            <li><%= link_to "Sign_up", new_user_registration_path %></li>
-            <li><%= link_to "login", new_user_session_path %></li>
+            <li><%= link_to "Home", root_path, class: 'fas fa-home nav-link text-light' %></li>
+            <li><%= link_to "Sign_up", new_user_registration_path, class: 'fas fa-user-plus nav-link text-light' %></li>
+            <li><%= link_to "login", new_user_session_path, class: 'fas fa-sign-in-alt nav-link text-light' %></li>
           <% end %>
         </ul>
       </div>

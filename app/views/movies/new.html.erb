@@ -8,17 +8,17 @@
 
           <div class="form_group">
             <%= f.label :Image %>
-            <%= f.attachment_field :movie_image, class: "form-control-file product_image" %>
+            <%= f.attachment_field :movie_image, class: "form-control-file movie_image" %>
           </div>
 
           <div class="form_group">
             <%= f.label :Title %>
-            <%= f.text_field :title, class: "form-control book_title" %>
+            <%= f.text_field :title, class: "form-control movie_title" %>
           </div>
 
           <div class="form_group">
             <%= f.label :Impressions %>
-            <%= f.text_area :body, class: "form-control book_body" %>
+            <%= f.text_area :body, class: "form-control movie_body" %>
           </div>
 
           <div id="evaluate_stars">

@@ -10,8 +10,7 @@ class User < ApplicationRecord
 
   attachment :profile_image, destroy: false
 
-  validates :name, presence: true
-  # length: {maximum: 20, minimum: 2}, uniqueness: true
+  validates :name, length: {maximum: 20, minimum: 2}, uniqueness: true
 
 
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy

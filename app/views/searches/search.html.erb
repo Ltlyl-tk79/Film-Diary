@@ -1,22 +1,73 @@
-<table class="table table-hover table-inverse">
-  <% if @range == "User" %>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.name %></td>
-          <td><%= link_to "show", user_path(user), class: "btn btn-outline-primary" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% else %>
-    <tbody>
-      <% @movies.each do |movie| %>
-        <tr>
-          <td><%= movie.title %></td>
-          <td><%= movie.body %></td>
-          <td><%= link_to "show", movie_path(movie), class: "btn btn-outline-primary" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% end %>
-</table>
+
+<% if @range == "User" %>
+  <main>
+    <div class="container">
+      <div class="row">
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+              <th>image</th>
+              <th>name</th>
+              <th></th>
+              <th>post count</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td>
+                  <%= attachment_image_tag(user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %>
+                </td>
+                <td><%= user.name %></td>
+                <td></td>
+                <td><%= user.movies.count %></td>
+                <td><%= link_to "show", user_path(user), class: "btn btn-outline-primary" %></td>
+                <td></td>
+                <td>
+                  <% if current_user.following?(user) %>
+                    <%= link_to "フォローを外す", user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
+                  <% else %>
+                    <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-success" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+<% else %>
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="movie_container">
+          <% @movies.each do |movie| %>
+            <div class="movie_item">
+              <%= link_to movie_path(movie.id) do %>
+                <%= attachment_image_tag(movie, :movie_image, :fill, 200, 200, follback: "no_image.jpg") %>
+              <% end %>
+              <p>タイトル：<%= movie.title %></p>
+              <p>投稿者：<%= movie.user.name %></p>
+              <p>コメント：<%= movie.movie_comments.count %></p>
+              <p><%= movie.favorites.count %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </main>
+<% end %>
+  <!--  <tbody>-->
+  <!--    <%# @movies.each do |movie| %>-->
+  <!--      <tr>-->
+  <!--        <td><%#= movie.title %></td>-->
+  <!--        <td><%#= movie.body %></td>-->
+  <!--        <td><%#= link_to "show", movie_path(movie), class: "btn btn-outline-primary" %></td>-->
+  <!--      </tr>-->
+  <!--    <%# end %>-->
+  <!--  </tbody>-->
+  <!--<%# end %>-->

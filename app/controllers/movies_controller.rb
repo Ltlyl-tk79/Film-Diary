@@ -16,7 +16,8 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    # @movies = Movie.all
+    @movies = Movie.page(params[:page]).reverse_order
     @quantity = Movie.count
 
   end

@@ -7,7 +7,7 @@ class SearchesController < ApplicationController
       # 検索方法と検索ワードを参照してデータを検索
       # looksメソッドを使用し、検索内容を取得し、変数を代入
     else
-      @movies = Movie.looks(params[:search], params[:word])
+      @movies = Movie.looks(params[:search], params[:word]).page(params[:page]).reverse_order
       # 検索方法と検索ワードを参照してデータを検索
       # looksメソッドを使用し、検索内容を取得し、変数を代入
     end

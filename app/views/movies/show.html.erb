@@ -5,6 +5,7 @@
         <%= attachment_image_tag(@movie, :movie_image, :fill, 250, 170, fallback: "no_image.jpg") %>
         <div id="favorite-btn_<%= @movie.id %>">
           <%= render 'favorites/favorite-btn', movie: @movie %>
+          <!--イイねボタンの表示-->
         </div>
       </div>
 
@@ -13,10 +14,11 @@
         <p><%= @movie.body %></p>
         <% if @movie_user.id == current_user.id %>
           <p><%= link_to "Edit", edit_movie_path(@movie), class:"btn btn-outline-warning" %>
-              <%= link_to "Destroy", movie_path(@movie), method: :delete, data: {confirm: '本当に消去しますか？'}, class: "btn btn-outline-danger" %>
+            　<%= link_to "Destroy", movie_path(@movie), method: :delete, data: {confirm: '本当に消去しますか？'}, class: "btn btn-outline-danger" %>
           </p>
         <% end %>
          <div class="movie-evaluation" data-score="<%= @movie.evaluation %>"></div>
+         <!--評価の表示-->
       </div>
     </div>
     <script>
@@ -34,6 +36,7 @@
       <div class="col-md-7">
         <div class="comment-history">
           <%= render 'movie_comments/comment-index', movie: @movie, user: @user %>
+          <!--コメント一覧表示-->
         </div>
       </div>
       <div class="col-md-4">

@@ -16,7 +16,6 @@ class MoviesController < ApplicationController
   end
 
   def index
-    # @movies = Movie.all
     @movies = Movie.page(params[:page]).reverse_order
     @quantity = Movie.count
 
@@ -43,6 +42,9 @@ class MoviesController < ApplicationController
   end
 
   def destroy
+    @movie = Movie.find(params[:id])
+    @movie.destroy
+    redirect_to user_path(@movie.user)
   end
 
   private

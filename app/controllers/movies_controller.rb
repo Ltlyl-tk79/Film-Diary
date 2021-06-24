@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
     @movie.user = current_user
 
     if @movie.save
-      redirect_to movies_path
+      redirect_to movies_path, notice: "新規投稿に成功しました"
     else
       render "new"
     end

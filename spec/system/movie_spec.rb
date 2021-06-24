@@ -33,7 +33,6 @@ describe '機能のテスト' do
       it '投稿後のリダイレクト先は正しいか' do
         fill_in 'movie[title]', with: Faker::Lorem.characters(number:5)
         fill_in 'movie[body]', with: Faker::Lorem.characters(number:20)
-#         # 上記と同様にmovie_imageも記述する必要かあるか?
         click_button 'Create Movie'
         expect(page).to have_current_path movies_path
       end
@@ -56,28 +55,6 @@ describe '機能のテスト' do
     end
   end
 
-  # describe '投稿詳細画面のテスト' do
-  #   before do
-  #     visit movie_path(movie)
-  #   end
-
-  #   context 'リンクの遷移先の確認' do
-  #     it 'Editの遷移先は編集画面か' do
-
-  #       #edit_link = find_all('a')[5]
-  #       # 上記の記述は何を意味しているか確認
-  #       #edit_link.click
-
-  #       click_link 'Edit'
-  #       expect(current_path).to eq('/movies/' + movie.id.to_s + '/edit')
-  #     end
-  #   end
-  #   context 'movie削除のテスト' do
-  #     it 'movieの削除' do
-  #       expect{ movie.destroy }.to change{ Movie.count }.by(-1)
-  #     end
-  #   end
-  # end
   describe '編集画面のテスト' do
     before do
       visit edit_movie_path(movie)
@@ -98,14 +75,6 @@ describe '機能のテスト' do
         click_button 'Update Movie'
         expect(page).to have_content 'error'
       end
-    # context '更新処理に関するテスト' do
-    #   it '更新後のリダイレクト先は正しいか' do
-    #     fill_in 'movie[title]', with: Faker::Lorem.characters(number:5)
-    #     fill_in 'movie[body]', with: Faker::Lorem.characters(number:20)
-    #     click_button 'Update Movie'
-    #     expect(page).to have_current_path movie_path(movie)
-    #   end
-    # end
     end
   end
 end

@@ -2,6 +2,7 @@
 <% if @range == "User" %>
   <main>
     <div class="container">
+      <h2><%= @word %><span>(<%= @quantity %>件)</span></h2>
       <div class="row">
         <table class="table table-hover table-inverse">
           <thead>
@@ -43,6 +44,7 @@
 <% else %>
   <main>
     <div class="container">
+      <h2><%= @word %><span>(<%= @quantity %>件)</span></h2>
       <div class="row">
         <div class="movie_container">
           <% @movies.each do |movie| %>

@@ -1,11 +1,46 @@
-<p>コメント件数<%= movie.movie_comments.count %></p>
-      <% movie.movie_comments.each do |movie_comment| %>
-       <%= movie_comment.user.name %><br>
-       <%= movie_comment.created_at.strftime('%Y/%m/%d') %><br>
-       <%= movie_comment.comment %><br>
+<div class="">
+  <%= movie.movie_comments.count %>件のコメント
+</div>
+<% movie.movie_comments.each do |comment| %>
+  <% unless comment.id.nil? %>
+    <div class="row" id="communityCommentsId-<%= movie.id %>">
+      <div class="col-md-12">
+        <div class="card" style="width: 1200px;">
+          <div class="comment-widgets m-b-20">
+            <div class="d-flex flex-row comment-row">
+              <div class="">
+                <span class="round comment-avatar p-3 img_profile">
+                  <%=link_to user_path(id: comment.user.id), method: :get do %>
+                    <%= attachment_image_tag(comment.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", class: "attachment user profile_image mt-2" )%>
+                  <% end %>
+                </span>
+              </div>
+              <div class="comment-text w-100">
+                <div class="community-comment-text pt-2 pl-2 pr-2">
+                  <div class="comment-header">
+                    <span style="font-size: 16px; font-weight: 600; "><%= comment.user.name %>さん</span>
+                    <% if comment.user == current_user %>
+                      <span class="action-icons" style="width: 88%;text-align: right;">
+                        <%#= link_to community_comments_edit_path(community_post.uid, comment.id), method: :get, data: { remote: true } do %>
+                          <!--<svg style="vertical-align: -1px; fill: gainsboro;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="" height="16px" id="Layer_1" version="1.1" viewBox="0 0 45 45" width="16px" xml:space="preserve"><g><rect  height="23" transform="matrix(-0.7071 -0.7072 0.7072 -0.7071 38.2666 48.6029)" width="11" x="23.7" y="4.875"/><path d="M44.087,3.686l-2.494-2.494c-1.377-1.377-3.61-1.377-4.987,0L34.856,2.94l7.778,7.778l1.749-1.749   C45.761,7.593,45.465,5.063,44.087,3.686z" /><polygon  points="16,22.229 16,30 23.246,30  "/><path d="M29,40H5V16h12.555l5-5H3.5C1.843,11,0,11.843,0,13.5v28C0,43.156,1.843,45,3.5,45h28   c1.656,0,2.5-1.844,2.5-3.5V23.596l-5,5V40z"/></g></svg>-->
+                        <%# end %>
+                        <%= link_to movie_movie_comment_path(movie, comment), method: :delete, data: { confirm: "本当に削除しますか？", remote: true } do %>
+                          <svg style="vertical-align: -1px; fill: gainsboro;" xmlns="http://www.w3.org/2000/svg" id="Layer_1" enable-background="new 0 0 512 512" height="16px" viewBox="0 0 512 512" width="16px"><g><path d="m424 64h-88v-16c0-26.51-21.49-48-48-48h-64c-26.51 0-48 21.49-48 48v16h-88c-22.091 0-40 17.909-40 40v32c0 8.837 7.163 16 16 16h384c8.837 0 16-7.163 16-16v-32c0-22.091-17.909-40-40-40zm-216-16c0-8.82 7.18-16 16-16h64c8.82 0 16 7.18 16 16v16h-96z"/><path d="m78.364 184c-2.855 0-5.13 2.386-4.994 5.238l13.2 277.042c1.22 25.64 22.28 45.72 47.94 45.72h242.98c25.66 0 46.72-20.08 47.94-45.72l13.2-277.042c.136-2.852-2.139-5.238-4.994-5.238zm241.636 40c0-8.84 7.16-16 16-16s16 7.16 16 16v208c0 8.84-7.16 16-16 16s-16-7.16-16-16zm-80 0c0-8.84 7.16-16 16-16s16 7.16 16 16v208c0 8.84-7.16 16-16 16s-16-7.16-16-16zm-80 0c0-8.84 7.16-16 16-16s16 7.16 16 16v208c0 8.84-7.16 16-16 16s-16-7.16-16-16z"/></g></svg>
+                        <% end %>
+                      </span>
+                    <% end %>
+                  </div>
+                  <div class=""><%= simple_format(comment.comment) %></div>
+                </div>
+                <div class="date pb-1" style="color: rgb(176, 179, 184);">
+                  <%= time_ago_in_words(comment.created_at) %> ago
+                </div>
+              </div>
+            </div>
+          </div><!-- comment-widgets m-b-20 -->
+        </div><!-- card -->
+      </div><!-- col-md-12 -->
+    </div><!-- row -->
+  <% end %>
+<% end %>
 
-
-       <% if movie_comment.user == current_user %>
-         <p><%= link_to "Destroy", movie_movie_comment_path(movie, movie_comment), method: :delete, remote: true, class: "btn btn-danger" %></p>
-       <% end %>
-      <% end %>

@@ -5,6 +5,7 @@
 .movie_container {
   display: flex;
   flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .movie_item {
@@ -31,4 +32,9 @@
 .pagination {
   text-align: center;
   // padding-top: 50px;
+}
+
+.img_profile img {
+  border-radius: 50%;
+  width: 50px;
 }
